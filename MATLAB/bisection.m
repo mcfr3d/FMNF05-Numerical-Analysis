@@ -1,4 +1,4 @@
-function [c,possible_err,res] = bisection(f,a,b,epsilon,Nmax)
+function [c,possible_err,res,n] = bisection(f,a,b,epsilon,Nmax)
 % function f
 % endpoints a, b
 % convergence tolerance epsilon

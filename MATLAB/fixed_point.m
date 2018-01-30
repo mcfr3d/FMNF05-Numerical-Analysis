@@ -1,4 +1,4 @@
-function xc = fixed_point(g, x0, epsilon, Nmax)
+function [xc,n] = fixed_point(g, x0, epsilon, Nmax)
 x(1) = x0;
 n = 1;
 while n < Nmax && abs(x(n)-g(x(n))) > epsilon
