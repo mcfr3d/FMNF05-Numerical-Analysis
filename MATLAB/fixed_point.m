@@ -6,3 +6,4 @@ while n < Nmax && abs(x(n)-g(x(n))) > epsilon
     x(n)=g(x(n-1));
 end
 xc=x(n);
+%possible_err = 
