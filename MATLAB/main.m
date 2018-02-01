@@ -43,6 +43,10 @@ fprintf('%s','Newton method:')
 [tc, res,n] = newton(T_zero,dT,t0,epsilon, Nmax);
 tc
 n
+C = 10 + 1/(2*k);
+T_zero_prime = @(t) k*(1/(2*k)-C*exp(-k*t));
+T_zero_prime_prime = @(t) k^2*C*exp(-k*t);
+M = 0.5*T_zero_prime_prime(tc)/T_zero_prime(tc)
 
 % Task 6
 
@@ -52,15 +56,27 @@ epsilon = 0.5e-16;
 fprintf('%s','Bisection:')
 [tc,possible_err,res,n] = bisection(T_zero,-6,0,epsilon,Nmax);
 tc
+possible_err
 n
+S = 1/2
 % Fixed-point
+
 fprintf('%s','Fixed-point:')
 Nmax = 20;
-T_fp = @(t) -log((30*k+1-k*t)/(20*k+1))/k;
+g = @(t) -log((30*k+1-k*t)/(20*k+1))/k;
 
-% T_fp_diff = @(t) 1/(30*k+1-k*t);
-% fplot(g, [-6 0])
-% abs(T_fp_diff) < 1 for all t < 0.
+% Check hypothesis
+% g_prime = @(t) 1/(30*k+1-k*t);
+% abs(g_prime) < 1 for all t < 0.
 
+[tc,n] = fixed_point(g,-1.3,epsilon,Nmax)
 
-[tc,n] = fixed_point(T_fp,-1.3,epsilon,Nmax)
+% g(t)
+%fprintf('%s', '|g_prime(tc)|:')
+g_prime = @(t) 1/(30*k+1-k*t);
+S = g_prime(tc)
+% S is approximate convergence rate for fixed point iteration with g(t)
+
+%Task 8
+fprintf('%s','fzero:');
+fzero(T_zero,-1,3)
