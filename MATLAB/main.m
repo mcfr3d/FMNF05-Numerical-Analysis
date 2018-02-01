@@ -19,7 +19,7 @@ k0 = 0.3; %based on result from task 3
 epsilon = 0.5e-6;
 Nmax = 100;
 fprintf('%s','Fixed-point (6decimals correct):')
-[k_fpi,n,err] = fixed_point(g,k0,epsilon,Nmax);
+[k_fpi,n,err,res] = fixed_point(g,k0,epsilon,Nmax);
 k_fpi
 
 % Task 5
@@ -53,22 +53,20 @@ M = 0.5*T_zero_prime_prime(tc)/T_zero_prime(tc)
 Nmax = 100;
 epsilon = 0.5e-16;
 fprintf('%s','Bisection:')
-[tc,possible_err,res,n] = bisection(T_zero,-6,0,epsilon,Nmax);
-tc
-possible_err
-n
+[tc,possible_err,res,n] = bisection(T_zero,-6,0,epsilon,Nmax)
 S = 1/2
 % Fixed-point
 
 fprintf('%s','Fixed-point:')
 Nmax = 20;
+epsilon = 0.5e-16;
 g = @(t) -log((30*k+1-k*t)/(20*k+1))/k;
 
 % Check hypothesis
 % g_prime = @(t) 1/(30*k+1-k*t);
 % abs(g_prime) < 1 for all t < 0.
 
-[tc,n,err] = fixed_point(g,-1.3,epsilon,Nmax)
+[tc,n,err,res] = fixed_point(g,-1.3,epsilon,Nmax)
 
 % g(t)
 %fprintf('%s', '|g_prime(tc)|:')
@@ -78,4 +76,4 @@ S = g_prime(tc)
 
 %Task 8
 fprintf('%s','fzero:');
-fzero(T_zero,-1,3)
+[tc,res] = fzero(T_zero,-1,3)
