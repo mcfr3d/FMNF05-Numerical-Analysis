@@ -19,7 +19,8 @@ k0 = 0.3; %based on result from task 3
 epsilon = 0.5e-6;
 Nmax = 100;
 fprintf('%s','Fixed-point (6decimals correct):')
-[k_fpi,n] = fixed_point(g,k0,epsilon,Nmax)
+[k_fpi,n,err] = fixed_point(g,k0,epsilon,Nmax);
+k_fpi
 
 % Task 5
 epsilon = 0.5e-16; % "Full" precision
@@ -40,9 +41,7 @@ dT = @(t) 0.5-10*k*exp(-k*t)-0.5*exp(-k*t);
 T_zero = @(t) T(t)-37;
 
 fprintf('%s','Newton method:')
-[tc, res,n] = newton(T_zero,dT,t0,epsilon, Nmax);
-tc
-n
+[tc, res,n] = newton(T_zero,dT,t0,epsilon, Nmax)
 C = 10 + 1/(2*k);
 T_zero_prime = @(t) k*(1/(2*k)-C*exp(-k*t));
 T_zero_prime_prime = @(t) k^2*C*exp(-k*t);
@@ -69,7 +68,7 @@ g = @(t) -log((30*k+1-k*t)/(20*k+1))/k;
 % g_prime = @(t) 1/(30*k+1-k*t);
 % abs(g_prime) < 1 for all t < 0.
 
-[tc,n] = fixed_point(g,-1.3,epsilon,Nmax)
+[tc,n,err] = fixed_point(g,-1.3,epsilon,Nmax)
 
 % g(t)
 %fprintf('%s', '|g_prime(tc)|:')
