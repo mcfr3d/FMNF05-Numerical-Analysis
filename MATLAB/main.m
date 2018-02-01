@@ -1,22 +1,18 @@
 %Task 3
-f = @(k) -7-1/(2*k) + (10 + 1/(2*k))*exp(-k);
-%The average dT/dt between t=0 and t=1 is -2.5
-a = 1/4;
-%Value for which dT(0)/dt = -2,5
-b = 5/14;
-%Value for which dT(1)/dt = -2.5
-epsilon = 0.5e-2;
-%We need accuracy of two decimals
-Nmax = 10;
-%Seems resonable
+f = @(k) -7-1/(2*k) + (10 + 1/(2*k))*exp(-k); %The average dT/dt between t=0 and t=1 is -2.5
+a = 1/4; %Value for which dT(0)/dt = -2,5
+b = 5/14; %Value for which dT(1)/dt = -2.5
+epsilon = 0.5e-2; %We need accuracy of two decimals
+Nmax = 10; %Seems resonable
 fprintf('%s','Bisection (2 decimals correct):')
 [k_b,possible_err,res,n] = bisection(f,a,b,epsilon,Nmax)
+
 % Task 4
 
 %Now fixed point iteration
 g = @(k) (2*k*(10 + 1/(2*k))*exp(-k)-1)/14;
 k0 = 0.3; %based on result from task 3
-epsilon = 0.5e-6;
+epsilon = 0.5e-6;%We need accuracy of six decimals
 Nmax = 100;
 fprintf('%s','Fixed-point (6decimals correct):')
 [k_fpi,n,err,res] = fixed_point(g,k0,epsilon,Nmax);
@@ -38,29 +34,29 @@ Nmax = 100;
 T = @(t) 22+0.5*t-1/(2*k)+(10 + 1/(2*k))*exp(-k*t);
 dT = @(t) 0.5-10*k*exp(-k*t)-0.5*exp(-k*t);
 
-T_zero = @(t) T(t)-37;
+T_zero = @(t) T(t)-37; %function to use in newton method
 
 fprintf('%s','Newton method:')
 [tc, res,n] = newton(T_zero,dT,t0,epsilon, Nmax)
 C = 10 + 1/(2*k);
-T_zero_prime = @(t) k*(1/(2*k)-C*exp(-k*t));
+T_zero_prime = @(t) k*(1/(2*k)-C*exp(-k*t)); %used for calc of M
 T_zero_prime_prime = @(t) k^2*C*exp(-k*t);
-M = 0.5*T_zero_prime_prime(tc)/T_zero_prime(tc)
+M = 0.5*T_zero_prime_prime(tc)/T_zero_prime(tc) % rate of quadratic convergence
 
 % Task 6
 
 % Bisection
 Nmax = 100;
-epsilon = 0.5e-16;
+epsilon = 0.5e-16; %full precision
 fprintf('%s','Bisection:')
 [tc,possible_err,res,n] = bisection(T_zero,-6,0,epsilon,Nmax)
-S = 1/2
+S = 1/2 % rate of linear convergence
 % Fixed-point
 
 fprintf('%s','Fixed-point:')
 Nmax = 20;
-epsilon = 0.5e-16;
-g = @(t) -log((30*k+1-k*t)/(20*k+1))/k;
+epsilon = 0.5e-16;%full precision
+g = @(t) -log((30*k+1-k*t)/(20*k+1))/k; % g whith g_prime<1 for all t<0
 
 % Check hypothesis
 % g_prime = @(t) 1/(30*k+1-k*t);
