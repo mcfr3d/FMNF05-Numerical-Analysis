@@ -2,7 +2,7 @@
 %I=imrotate(I,180);
 %I = flip(I,2);
 %imshow(I);
-
+load('pointData\cursorinfo.mat')
 A = [cursor_info(1).Position];
 X=[A(1)];
 Y=[A(2)];
