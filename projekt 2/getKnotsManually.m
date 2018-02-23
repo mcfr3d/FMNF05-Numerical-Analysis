@@ -1,5 +1,5 @@
 I = imread('redCar.png');
-I=imrotate(I,180);
+I=imrotate(I,180); %maybe don't rotate
 I = flip(I,2);
 imshow(I)
 load('pointData/cursorinfo.mat')
