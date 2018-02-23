@@ -10,14 +10,12 @@
 
 n = 4;
 tau = 5;
-%x = zeros(1,n+1);
 x = 0:1:n;
 y = zeros(1,n+1);
 h = zeros(1,n);
 alpha = zeros(1,n);
 beta = zeros(1,n);
 gamma = zeros(1,n);
-A = zeros(n+1,n+1);
 for i = 1:n
     h(i) = x(i+1)-x(i);
     alpha(i) = 1/h(i) - tau/sinh(tau*h(i));
@@ -35,11 +33,13 @@ end
 %      0 0 0 0 0]
 
 A = zeros(n+1,n+1);
+A(1,1) = 1;
 for row = 2:n
     A(row,row-1) = alpha(row-1);
     A(row,row) = betas(row-1);
     A(row,row+1) = alpha(row);
 end
+A(n+1,n+1) = 1;
 
 A
 
