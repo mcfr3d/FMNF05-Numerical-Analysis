@@ -9,5 +9,5 @@
 I = imread('redCar.png');
 [x,y] = getPredefinedKnots('pointData/cursorinfo3.mat');
 tau=0.1;
-tensionsplineplot(x,y,tau);
+tensionsplineplot(x,y,tau,111,10);
 setRatios('plot')

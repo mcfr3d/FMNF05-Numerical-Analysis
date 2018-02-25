@@ -2,7 +2,7 @@
 %Calculates coefficients of tension spline
 %Input: x,y vectors of data points and tau which is the tension value
 %Output: vector of coefficients z1,z2,z3...
-function coeff=tensionsplinecoeff(x,y,tau)
+function coeff=tensionsplinecoeff(x,y,tau,cond1,cond2)
 n=length(x);
 A=zeros(n,n); % matrix A is nxn
 r=zeros(n,1);
@@ -21,8 +21,8 @@ end
 %A(n,n) = 1;
 %%%%%%%%%%%%%%%%%%%%
 %clamped
-yo_prim =1;
-yn_prim=-1;
+yo_prim =cond1;
+yn_prim=cond2;
 A(1,1)=beta(1);A(1,2)=alpha(1);r(1)=gamma(1)-tau^2*yo_prim; 
 A(n,n-1)=alpha(n-1);A(n,n)=beta(n-1);r(n)=tau^2*yn_prim-gamma(n-1);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
