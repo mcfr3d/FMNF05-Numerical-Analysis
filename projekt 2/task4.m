@@ -6,31 +6,41 @@
 
 I = imread('redCar.png');
 
-[x1,y1] = getPredefinedKnots('pointData/cursorinfo4.mat');
-tau = 0.4;
-%cond1 = 0.02*tau;
-%cond2 = -0.09*tau;
+[x1,y1] = getPredefinedKnots('pointData/roof.mat');
+tau = 0.2;
 cond1 = 1/5;
-cond2 = -0.006;
+cond2 = -1/2;
 T1 = tensionSplines(x1, y1, tau, cond1, cond2);
 [x2,y2] = getPredefinedKnots('pointData/undercarriage.mat');
-tau = 0.2;
-cond1 = 0.02*tau;
-cond2 = -0.09*tau;
+tau = 0.4;
+cond1 = -1;
+cond2 = 1;
 T2 = tensionSplines(x2, y2, tau, cond1, cond2);
+[x3,y3] = getPredefinedKnots('pointData/window_top.mat');
+tau = 0.2;
+cond1 = 1;
+cond2 = -1;
+T3 = tensionSplines(x3, y3, tau, cond1, cond2);
+[x4,y4] = getPredefinedKnots('pointData/window_bottom.mat');
+tau = 0.2;
+cond1 = -1;
+cond2 = 0;
+T4 = tensionSplines(x4, y4, tau, cond1, cond2);
 
 
-imshow(I);
+% imshow(I);
 hold on
-% plot(x,ones(ns,1)*258 - y,'.')
-% plot(x,y,'.')
 for i = 1:length(x1)-1
-%     fplot(@(t) 258-T1(i,t), [x1(i) x1(i+1)], 'b');
     fplot(@(t) T1(i,t), [x1(i) x1(i+1)], 'b');
 end
 for i = 1:length(x2)-1
-%     fplot(@(t) 258-T2(i,t), [x2(i) x2(i+1)], 'b');
-    fplot(@(t) T2(i,t), [x2(i) x2(i+1)], 'g');
+    fplot(@(t) T2(i,t), [x2(i) x2(i+1)], 'b');
+end
+for i =1:length(x3)-1
+    fplot(@(t) T3(i,t), [x3(i) x3(i+1)], 'g');
+end
+for i =1:length(x4)-1
+    fplot(@(t) T4(i,t), [x4(i) x4(i+1)], 'g');
 end
 
 
