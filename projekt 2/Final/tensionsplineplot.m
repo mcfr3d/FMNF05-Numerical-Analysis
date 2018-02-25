@@ -2,10 +2,18 @@
 %Computes and plots tension spline from data points
 %Input: x,y vectors of data points
 %Output: x1, y1 spline values at plotted points
-function [x1,y1]=tensionsplineplot(x,y,tau)
+function [x1,y1]=tensionsplineplot(x,y,tau,cond1,cond2)
+ if ~exist('cond1','var')
+     % third parameter does not exist, so default it to something
+      cond1 = 0;
+ end
+  if ~exist('cond2','var')
+     % third parameter does not exist, so default it to something
+      cond2 = 0;
+ end
 k= 1000; %number k of plotted points per segment
 n=length(x);
-z=tensionsplinecoeff(x,y,tau);
+z=tensionsplinecoeff(x,y,tau,cond1,cond2);
 x1=[]; y1=[];
 for i=1:n-1
 xs=linspace(x(i),x(i+1),k+1);
