@@ -1,3 +1,6 @@
+%Code for task 1
+%Uses Matlabs spline function to generate a splie from our points
+%it prints the spline over the care to show how it traces the edge
 figure
 I = imread('redCar.png');
 imshow(I);
