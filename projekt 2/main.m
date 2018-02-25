@@ -3,8 +3,8 @@ clear;
 layout = [2,2];
 
 I = imread('redCar.png');
-%[x,y] = getKnots(I,60);
-[x,y] = getPredefinedKnots('pointData/cursorinfo.mat');
+[x,y] = getKnots(I,60);
+% [x,y] = getPredefinedKnots('pointData/roof.mat');
 figure % New figure window
 subplot(layout(1),layout(2),1);
 imshow(I);

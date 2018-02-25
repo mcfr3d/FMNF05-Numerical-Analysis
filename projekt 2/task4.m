@@ -1,9 +1,3 @@
-% n = 10;
-% syms f(x);
-% f(x) = x+2;
-% x = linspace(0, pi, n);
-% y = f(x);
-
 I = imread('redCar.png');
 
 [x1,y1] = getPredefinedKnots('pointData/roof.mat');
@@ -33,15 +27,15 @@ hold on
 for i = 1:length(x1)-1
     fplot(@(t) T1(i,t), [x1(i) x1(i+1)], 'b');
 end
-for i = 1:length(x2)-1
-    fplot(@(t) T2(i,t), [x2(i) x2(i+1)], 'b');
-end
-for i =1:length(x3)-1
-    fplot(@(t) T3(i,t), [x3(i) x3(i+1)], 'g');
-end
-for i =1:length(x4)-1
-    fplot(@(t) T4(i,t), [x4(i) x4(i+1)], 'g');
-end
+% for i = 1:length(x2)-1
+%     fplot(@(t) T2(i,t), [x2(i) x2(i+1)], 'b');
+% end
+% for i =1:length(x3)-1
+%     fplot(@(t) T3(i,t), [x3(i) x3(i+1)], 'g');
+% end
+% for i =1:length(x4)-1
+%     fplot(@(t) T4(i,t), [x4(i) x4(i+1)], 'g');
+% end
 
 
 daspect([1 1 1])

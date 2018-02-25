@@ -15,5 +15,5 @@ for r = 2:rows
     end
 end
 %figure % new figure window
-imshow(B);
-title('Stripes');
+% imshow(B);
+% title('Stripes');
