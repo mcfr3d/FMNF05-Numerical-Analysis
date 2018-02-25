@@ -3,7 +3,7 @@
 %Input: x,y vectors of data points
 %Output: x1, y1 spline values at plotted points
 function [x1,y1]=tensionsplineplot(x,y,tau)
-k= 10; %number k of plotted points per segment
+k= 1000; %number k of plotted points per segment
 n=length(x);
 z=tensionsplinecoeff(x,y,tau);
 x1=[]; y1=[];
