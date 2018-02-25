@@ -1,13 +1,16 @@
+%Task 6
+%Draws the splines for all the different sections of the car
+%We use a total of 4 different splines for all the different sections
+%The splines use the different Tau values and different end conditions.
 figure
 I = imread('redCar.png');
-I = rgb2gray(I); %Convert to bw
+I = rgb2gray(I); %Convert to greyscale
 imshow(I);
 brighten(.8);
 hold on
 [x,y] = getPredefinedKnots('../pointData/roof.mat');
 tau=0.1;
 [x1,y1] = tensionsplineplot(x,y,tau,0.1,-0.8);
-% plot(x1,258*ones(length(y1),1) - y1,'b', 'linewidth', 2);
 plot(x1,y1,'b', 'linewidth', 2);
 [x,y] = getPredefinedKnots('../pointData/undercarriage.mat');
 tau=1;

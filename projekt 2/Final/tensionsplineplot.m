@@ -1,14 +1,17 @@
 %Tension spline plot
 %Computes and plots tension spline from data points
 %Input: x,y vectors of data points
+%Input: Tau value which is the tension value
+%Input: optioal input of end condition values cond1 and cond2
+%will be set to default 0,0 otherwise
 %Output: x1, y1 spline values at plotted points
 function [x1,y1]=tensionsplineplot(x,y,tau,cond1,cond2)
  if ~exist('cond1','var')
-     % fourth parameter does not exist, so default it to something
+     % fourth parameter does not exist, so default it to 0
       cond1 = 0;
  end
   if ~exist('cond2','var')
-     % fifth parameter does not exist, so default it to something
+     % fifth parameter does not exist, so default it to 0
       cond2 = 0;
  end
 k= 100; %number k of plotted points per segment
@@ -28,10 +31,3 @@ for i=1:n-1
 end
 x1=[x1; x(end)];y1=[y1;y(end)];
 plot(x1,y1,'b');
-
-
-%ys=z(i)*sinh(tau*dx2); % evaluate using nested multiplication
-%ys=ys+z(i+1).*sinh(tau*dx);
-%ys=ys./(tau^2*sinh(tau*h));
-%ys=ys+((y(i)-z(i)/(tau^2))*dx2+(y(i+1)-z(i+1)/(tau^2))*dx)/h;
-%ys=(z(i)*sinh(tau*(x(i+1)-xs)) + z(i+1)*sinh(tau*(xs-x(i))))/(tau^2*sinh(tau*h)) + ((y(i)-z(i)/(tau^2))*(x(i+1)-xs)+(y(i+1)-z(i+1)/(tau^2))*(xs-x(i)))/h;
