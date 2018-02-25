@@ -11,7 +11,7 @@ h(i)= x(i+1)-x(i);
 end
 [alpha,beta,gamma]=getAlphaBetaGamma(tau, h, y, n);
 for i=2:n-1 % load the A matrix
-A(i,i-1:i+1)=[alpha(i-1) 2*(beta(i-1)+beta(i)) alpha(i)];
+A(i,i-1:i+1)=[alpha(i-1) (beta(i-1)+beta(i)) alpha(i)];
 r(i)=gamma(i)-gamma(i-1); % right-hand side
 end
 % Set endpoint conditions
